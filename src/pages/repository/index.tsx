@@ -11,7 +11,7 @@ interface RepositoryParams{
   repository:string,
 }
 
-interface Repository {
+interface Repositories {
   full_name: string,
   description: string,
   forks_count:number,
@@ -35,7 +35,7 @@ interface Issue{
 const Repository: React.FC = () => {
 
   const {params} = useRouteMatch<RepositoryParams>()
-  const [repository, setRepository] = useState<Repository | null>(null)
+  const [repository, setRepository] = useState<Repositories | null>(null)
   const [issues, setIssues] = useState<Issue[]>([])
 
   useEffect(()=>{
@@ -52,9 +52,7 @@ const Repository: React.FC = () => {
         setIssues(res.data)
       }
     )
-
   },[params, repository])
-
   return (
       <>
         <Header>
